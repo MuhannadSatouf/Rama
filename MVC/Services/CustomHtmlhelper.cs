@@ -6,7 +6,7 @@ namespace Rama.MVC.Services
     {
         public static string StripHtmlTags(string html)
         {
-            return Regex.Replace(html, "<.*?>", string.Empty);
+            return Regex.Replace(html, "<.*?>", string.Empty); 
         }
     }
 }
