@@ -1,0 +1,27 @@
+﻿@using Rama.Extenstions;
+@using Umbraco.Cms.Core.Models.Blocks;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SimpleContentPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    Layout = "MasterPage.cshtml";
+
+    var model = Model;
+}
+
+<div class="jumbotron text-center jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-1">@Model.Value("pageTitle")</h1>
+    </div>
+</div>
+
+<section id="main" class="wrapper">
+    <div class="container">
+        <p>@Model.Value("bodyText")</p>
+    </div>
+
+   @*  @Html.GetBlockListHtml(Model.Blocks);  *@
+    @await Component.BlockContainerAsync(Model.Value<BlockListModel>("blocks"), "")
+</section>
+

@@ -1,0 +1,18 @@
+﻿@using Rama.Extenstions;
+@using Rama.MVC.Pages.ExampleReactPage;
+@using Umbraco.Cms.Core.Models.Blocks;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ExampleReactPageViewModel>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Rama.MVC.Blocks;
+
+@{
+    Layout = "MasterPage.cshtml";
+}
+
+@{
+    var model = Model;
+    var model2 = Model;
+}
+
+<div id="exampleReactPage" data-page-id="@Model.Id"></div>

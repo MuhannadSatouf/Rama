@@ -1,0 +1,25 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var selection = Umbraco.ContentAtRoot().FirstOrDefault()
+    .Children()
+    .Where(x => x.IsVisible());
+}
+
+<!-- Header -->
+<header>
+    <div class="header__logo">
+        <a class="" href="/">UmbracoTV</a>
+    </div>
+    <nav class="header__navigation">
+        <ul>
+            @foreach (var item in selection)
+            {
+                <li>
+                    <a href="@item.Url()">@item.Name()</a>
+                </li>
+            }
+        </ul>
+    </nav>
+    <button class="header__hamburger">&#9776;</button>
+</header>

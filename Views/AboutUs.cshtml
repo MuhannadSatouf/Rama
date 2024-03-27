@@ -1,0 +1,28 @@
+﻿@using Rama.Extenstions;
+@using Rama.MVC.Pages.AboutUs;
+@using Umbraco.Cms.Core.Models.Blocks;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<AboutUsViewModel>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Rama.MVC.Blocks;
+
+@{
+    Layout = "MasterPage.cshtml";
+}
+
+@{
+    var model = Model;
+    var model2 = Model;
+}
+
+<div class="container">
+    <h1>@Model.Value("pageTitle")</h1>
+    <p>@Model.Value("pageBody")</p>
+</div>
+
+@{
+    var blocks = Model.Value("blocks");
+}
+@await Component.BlockContainerAsync(Model.Value<BlockListModel>("blocks"), "")
+
+@* @Html.GetBlockListHtml(Model.Value<BlockListModel>("imageBlock")) *@

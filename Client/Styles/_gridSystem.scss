@@ -1,0 +1,235 @@
+$max-mobile-width: 600px;
+$max-tablet-width: 1024px;
+
+@mixin mobile-dev {
+    @media (max-width: #{$max-mobile-width}) {
+        @content;
+    }
+}
+
+@mixin tablet-dev {
+    @media (min-width: #{$max-mobile-width}) and (max-width: #{$max-tablet-width}) {
+        @content;
+    }
+}
+
+.grid-system {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-gap: 12px;
+    position: relative;
+
+    @include tablet-dev {
+        grid-template-columns: repeat(8, 1fr);
+        margin: 0 32px;
+    }
+
+    @include mobile-dev {
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 8px;
+        margin: 0 12px;
+    }
+}
+
+.grid-data-inside-max-width {
+    @media (min-width: 1024px) {
+        max-width: 100rem !important;
+        left: 50% !important;
+        transform: translate(-50%) !important;
+    }
+}
+
+.grid-system-within-boundaries {
+    @media (min-width: 1024px) {
+        max-width: 100rem !important;
+        margin: auto;
+    }
+}
+
+.grid-whole-width {
+    position: relative;
+    grid-column: 1/15;
+
+    @include tablet-dev {
+        grid-column: 1/9;
+        margin: 0 -32px;
+    }
+
+    @include mobile-dev {
+        grid-column: 1/5;
+        margin: 0 -12px;
+    }
+}
+
+.grid-full-width {
+    position: relative;
+    grid-column: 2/14;
+
+    @include tablet-dev {
+        grid-column: 1/9;
+    }
+
+    @include mobile-dev {
+        grid-column: 1/5;
+    }
+}
+
+.grid-half-width:first-child {
+    position: relative;
+    grid-column: 2/8;
+
+    @include tablet-dev {
+        grid-column: 1/5 !important;
+    }
+
+    @include mobile-dev {
+        grid-column: 1/3;
+    }
+}
+
+.grid-half-width:nth-child(2) {
+    position: relative;
+    grid-column: 8/14;
+
+    @include tablet-dev {
+        grid-column: 5/9 !important;
+    }
+
+    @include mobile-dev {
+        grid-column: 3/5;
+    }
+}
+
+.grid-half-width-reverse:first-child {
+    position: relative;
+    grid-column: 8/14;
+    grid-row-start: 1;
+
+    @include tablet-dev {
+        grid-column: 5/9 !important;
+    }
+
+    @include mobile-dev {
+        grid-column: 3/5;
+    }
+}
+
+.grid-half-width-reverse:nth-child(2) {
+    position: relative;
+    grid-column: 2/8;
+    grid-row-start: 1;
+
+    @include tablet-dev {
+        grid-column: 1/5 !important;
+    }
+
+    @include mobile-dev {
+        grid-column: 1/3;
+    }
+}
+
+.grid-half-width {
+    position: relative;
+
+    @include tablet-dev {
+        grid-column: 1/5;
+    }
+
+    @include mobile-dev {
+        grid-column: 1/3;
+    }
+}
+
+.grid-third-width:first-child {
+    position: relative;
+    grid-column: 2/6;
+
+    @include tablet-dev {
+        grid-column: 1/5;
+    }
+}
+
+.grid-third-width:nth-child(2) {
+    position: relative;
+    grid-column: 6/10;
+
+    @include tablet-dev {
+        grid-column: 5/9;
+    }
+}
+
+.grid-third-width:nth-child(3) {
+    position: relative;
+    grid-column: 10/14;
+
+    @include tablet-dev {
+        display: none;
+    }
+}
+
+.grid-whole-half-width:first-child {
+    position: relative;
+    grid-column: 1/8;
+
+    @include tablet-dev {
+        grid-column: 1/5 !important;
+        margin-left: -32px;
+    }
+
+    @include mobile-dev {
+        grid-column: 1/3;
+    }
+}
+
+.grid-whole-half-width:nth-child(2) {
+    position: relative;
+    grid-column: 8/15;
+
+    @include tablet-dev {
+        grid-column: 5/9 !important;
+        margin-right: -32px;
+    }
+
+    @include mobile-dev {
+        grid-column: 3/5;
+    }
+}
+
+.grid-whole-half-width {
+    position: relative;
+
+    @include tablet-dev {
+        grid-column: 1/5;
+    }
+
+    @include mobile-dev {
+        grid-column: 1/3;
+    }
+}
+
+.grid-whole-third-width:first-child {
+    position: relative;
+    grid-column: 1/6;
+
+    @include tablet-dev {
+        grid-column: 1/5;
+    }
+}
+
+.grid-whole-third-width:nth-child(2) {
+    position: relative;
+    grid-column: 6/11;
+
+    @include tablet-dev {
+        grid-column: 5/9;
+    }
+}
+
+.grid-whole-third-width:nth-child(3) {
+    position: relative;
+    grid-column: 11/16;
+
+    @include tablet-dev {
+        display: none;
+    }
+}

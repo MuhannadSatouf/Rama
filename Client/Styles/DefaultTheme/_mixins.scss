@@ -1,0 +1,138 @@
+/* Breakpoint */
+@mixin mobile {
+    @media (max-width: #{$tablet-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin large-mobile {
+    @media (max-width: #{$large-mobile-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+        @content;
+    }
+}
+
+@mixin mobile-tablet {
+    @media (max-width: #{$desktop-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin tablet-desktop {
+    @media (min-width: #{$tablet-width}) {
+        @content;
+    }
+}
+
+@mixin desktop-dev {
+    @media (min-width: #{$max-tablet-width}) {
+        @content;
+    }
+}
+
+@mixin tablet-dev {
+    @media (min-width: #{$max-mobile-width}) and (max-width: #{$max-tablet-width}) {
+        @content;
+    }
+}
+
+@mixin mobile-dev {
+    @media (max-width: #{$max-mobile-width}) {
+        @content;
+    }
+}
+
+@mixin tablet-mobile-dev {
+    @media (max-width: #{$max-tablet-width}) {
+        @content;
+    }
+}
+
+@mixin transition($attr: all, $time: 0.3s, $type: ease) {
+    -moz-transition: #{$attr} #{$time} #{$type};
+    -o-transition: #{$attr} #{$time} #{$type};
+    -webkit-transition: #{$attr} #{$time} #{$type};
+    transition: #{$attr} #{$time} #{$type};
+}
+
+@mixin textoverflow($type: ellipsis) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin expand {
+    width: 100%;
+}
+
+@mixin placeholder {
+    color: $color-grey;
+    font-weight: 300;
+}
+/* icon */
+@mixin icon {
+    width: rem(24px);
+    height: rem(24px);
+}
+
+@mixin icon--medium {
+    width: rem(16px);
+    height: rem(16px);
+}
+
+@mixin icon--small {
+    width: rem(10px);
+    height: rem(10px);
+}
+
+@mixin limit-text($rows: 1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $rows;
+    line-clamp: $rows;
+    -webkit-box-orient: vertical;
+}
+
+@mixin overlay() {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+
+@mixin hideTabletAndMobile() {
+    @include tablet-dev {
+        display: none;
+    }
+
+    @include mobile-dev {
+        display: none;
+    }
+}
+
+@mixin hideDesktopAndTablet() {
+    @include desktop-dev {
+        display: none;
+    }
+
+    @include tablet-dev {
+        display: none;
+    }
+}
