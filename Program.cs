@@ -9,7 +9,7 @@ builder.CreateUmbracoBuilder()
     .AddComposers()
     .Build();
 
-WebApplication app = builder.Build();
+WebApplication app = builder.Build(); 
 
 IHostEnvironment env = app.Services.GetRequiredService<IHostEnvironment>();
 
