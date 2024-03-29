@@ -25,6 +25,7 @@
     <Folder Include="Client\images\" />
     <Folder Include="Client\Scripts\Greatit.Cms\Common\" />
     <Folder Include="Client\Scripts\Pages\" />
+    <Folder Include="umbraco\" />
   </ItemGroup>
 
   <PropertyGroup>
