@@ -4,22 +4,16 @@
 /*=============== VARIABLES CSS ===============*/
 :root {
     --header-height: 3.5rem;
-    /*========== Colors ==========*/
-    /*Color mode HSL(hue, saturation, lightness)*/
     --black-color: #252525;
     --black-color-light: hsl(220, 24%, 15%);
     --black-color-lighten: hsl(220, 20%, 18%);
     --white-color: #fff;
     --body-color: hsl(220, 100%, 97%);
     --yellow-color: #eeb700;
-    /*========== Font and typography ==========*/
-    /*.5rem = 8px | 1rem = 16px ...*/
-    --body-font: "Montserrat", sans-serif;
+    --body-font: $font-family;
     --normal-font-size: .938rem;
-    /*========== Font weight ==========*/
     --font-regular: 400;
     --font-semi-bold: 600;
-    /*========== z index ==========*/
     --z-tooltip: 10;
     --z-fixed: 100;
 }
@@ -46,8 +40,6 @@ body {
 
 ul {
     list-style: none;
-    /* Color highlighting when pressed on mobile devices */
-    /*-webkit-tap-highlight-color: transparent;*/
 }
 
 a {
@@ -57,7 +49,6 @@ a {
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
     max-width: 1120px;
-    margin-inline: 1.5rem;
 }
 
 /*=============== HEADER ===============*/
@@ -94,8 +85,22 @@ a {
     align-items: center;
     column-gap: .25rem;
     font-weight: var(--font-semi-bold);
-    /* Color highlighting when pressed on mobile devices */
-    /*-webkit-tap-highlight-color: transparent;*/
+    display: flex;
+    flex-direction: column;
+
+    &--icon {
+        @include logo();
+    }
+
+    &--text {
+        font-family:$font-family-Fraunces;
+    }
+   
+}
+
+.nav__logo:hover{
+    text-decoration: none;
+    color: var(---white-color);
 }
 
 .nav__logo i {
@@ -298,7 +303,6 @@ a {
     .dropdown__submenu {
         max-height: initial;
         overflow: initial;
-        position: absolute;
         left: 0;
         top: 6rem;
         opacity: 0;
@@ -368,7 +372,7 @@ a {
         }
 
         &__list {
-            height: 100%;
+            height: var(--header-height);
             display: flex;
             column-gap: 3rem;
         }
@@ -395,9 +399,8 @@ a {
         &__submenu {
             max-height: initial;
             overflow: initial;
-            position: absolute;
             left: 0;
-            top: 6rem;
+            top: 4rem;
             opacity: 0;
             pointer-events: none;
             transition: opacity .3s, top .3s;
@@ -463,7 +466,14 @@ a {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
+
+        @include mobile-dev {
+            width: 100%;
+        }
+
+        @include tablet-dev {
+            width: 100%;
+        }
     }
 
     &__logo {
@@ -471,8 +481,6 @@ a {
         align-items: center;
         column-gap: .25rem;
         font-weight: var(--font-semi-bold);
-        // Color highlighting when pressed on mobile devices
-        // -webkit-tap-highlight-color: transparent;
 
         & i {
             font-weight: initial;
@@ -529,14 +537,15 @@ a {
         color: var(--white-color);
         background-color: var(--black-color);
         font-weight: var(--font-semi-bold);
-        padding: 1.25rem 1.5rem;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         transition: background-color .3s;
+        width: fit-content;
 
         &:hover {
-            background-color: var(--black-color-light);
+            color: var(--yellow-color);
+            background-color: var(--black-color);
+            text-decoration: none;
         }
     }
 }
@@ -544,7 +553,7 @@ a {
 /* Show menu */
 .show-menu {
     opacity: 1;
-    top: 3.5rem;
+    top: 4.5rem;
     pointer-events: initial;
 }
 
@@ -573,9 +582,9 @@ a {
 
     &__link,
     &__sublink {
-        padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+        padding: 1.25rem;
         color: var(--white-color);
-        background-color: var(--black-color-light);
+        background-color: var(--black-color);
         display: flex;
         align-items: center;
         column-gap: .5rem;
@@ -589,6 +598,8 @@ a {
 
         &:hover {
             background-color: var(--black-color);
+            color: var(--yellow-color);
+            text-decoration: none;
         }
     }
 

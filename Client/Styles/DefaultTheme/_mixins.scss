@@ -136,3 +136,14 @@
         display: none;
     }
 }
+
+
+@mixin logo() {
+    width: 90px;
+    height: 40px;
+    display: block;
+    background-image: url(../../images/website_logo.png) !important;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-size: cover;
+}
