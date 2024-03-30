@@ -6,13 +6,11 @@
 }
 
 
-
-@if (!string.IsNullOrEmpty(Model.Title))
-{
-    <h1>@Model.Title</h1>
+@{
+    var model = Model;
+    var model2 = Model;
 }
 
-@if (Model.Value("bodyText") != null)
-{
-    <p>@Model.BodyText</p>
-}
+
+@await Html.PartialAsync("_topBanner", Model)
+
