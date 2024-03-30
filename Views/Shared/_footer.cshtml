@@ -6,7 +6,15 @@
     var footerSocialLinks = homePage.FooterSocialLinks;
     var address = homePage.Address;
     var description = homePage.FooterDescription;
+
+    var selection = Umbraco.ContentAtRoot().FirstOrDefault()
+           .Children()
+           .Where(x => x.IsVisible());
+
+    var navigationItems = homePage.MainNavigation;
 }
+
+
 
 <footer class="footer">
     <div class="grid-system grid-system-within-boundaries">
@@ -30,9 +38,30 @@
                     </div>
                 }
 
+                <ul class="footer-links-container__ul">
+                    @foreach (var item in navigationItems)
+                    {
+                        var content = item.Content;
+                        var title = content.Value("title");
+                        var linkObject = content.Value("Link");
+                        var link = linkObject as Umbraco.Cms.Core.Models.Link;
+                        var url = string.Empty;
+                        var subLinks = content.Value("subLinks");
+                        if (link != null)
+                        {
+                            url = link.Url;
+                        }
+
+                        <li class="nav-item footer-links-container--item">
+                            <a href="@url" class="nav-link">@title </a>
+                        </li>
+                    }
+                </ul>
+
             </div>
             <div class="footer__container--bottom">
                 <div class="footer__container--bottom-links">
+
                     @if (footerSocialLinks != null)
                     {
                         <ul class="list-inline text-center social-media-icons">
@@ -53,4 +82,5 @@
             </div>
         </div>
     </div>
+
 </footer>
