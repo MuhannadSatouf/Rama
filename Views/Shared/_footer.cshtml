@@ -1,8 +1,56 @@
 ﻿@inherits UmbracoViewPage
+@using Umbraco.Cms.Core.Models;
 
+@{
+    var homePage = Umbraco.AssignedContentItem.AncestorOrSelf<HomePage>();
+    var footerSocialLinks = homePage.FooterSocialLinks;
+    var address = homePage.Address;
+    var description = homePage.FooterDescription;
+}
 
-<div class="container-fluid footer">
-    <div class="container">
-        @Model.Value("FooterText")
+<footer class="footer">
+    <div class="grid-system grid-system-within-boundaries">
+        <div class="footer__container grid-full-width">
+            <div class="footer__container--top">
+                <a href="@homePage.Url()" class="nav__logo">
+                    <span class="nav__logo--icon"></span>
+                    <span class="nav__logo--text">Design &amp; Contracting</span>
+                </a>
+                @if (description != null)
+                {
+                    <div class="footer--description">
+                        <p>@description</p>
+                    </div>
+                }
+
+                @if (address != null)
+                {
+                    <div class="footer--address">
+                        <p>@address</p>
+                    </div>
+                }
+
+            </div>
+            <div class="footer__container--bottom">
+                <div class="footer__container--bottom-links">
+                    @if (footerSocialLinks != null)
+                    {
+                        <ul class="list-inline text-center social-media-icons">
+                            @foreach (var socialLink in footerSocialLinks)
+                            {
+                                <li>
+                                    <a href="@socialLink.Url" target="_blank">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fas fa-circle fa-stack-2x"></i>
+                                            <i class="fab fa-@socialLink.Name fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</footer>

@@ -25,30 +25,9 @@
     }
 }
 
-/*=============== BASE ===============*/
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    font-family: var(--body-font);
-    font-size: var(--normal-font-size);
-    background-color: var(--body-color);
-}
-
-ul {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-}
-
 /*=============== REUSABLE CSS CLASSES ===============*/
-.container {
-    max-width: 1120px;
+.Container {
+    max-width: 1024px;
 }
 
 /*=============== HEADER ===============*/
@@ -87,18 +66,18 @@ a {
     font-weight: var(--font-semi-bold);
     display: flex;
     flex-direction: column;
+    text-decoration: none;
 
     &--icon {
         @include logo();
     }
 
     &--text {
-        font-family:$font-family-Fraunces;
+        font-family: $font-family-Fraunces;
     }
-   
 }
 
-.nav__logo:hover{
+.nav__logo:hover {
     text-decoration: none;
     color: var(---white-color);
 }
@@ -131,7 +110,7 @@ a {
 }
 
 /* Navigation for mobile devices */
-@media screen and (max-width: 1118px) {
+@media screen and (max-width: 1024px) {
     .nav__menu {
         position: absolute;
         left: 0;
@@ -142,6 +121,10 @@ a {
         pointer-events: none;
         opacity: 0;
         transition: top .4s, opacity .3s;
+
+        & > ul {
+            list-style: none;
+        }
     }
 
     .nav__menu::-webkit-scrollbar {
@@ -151,6 +134,7 @@ a {
     .nav__list {
         background-color: var(--black-color);
         padding-top: 1rem;
+        list-style: none;
     }
 }
 
@@ -163,6 +147,7 @@ a {
     justify-content: space-between;
     align-items: center;
     transition: background-color .3s;
+    text-decoration: none;
 }
 
 .nav__link:hover {
@@ -198,8 +183,7 @@ a {
     transition: transform .4s;
 }
 
-.dropdown__link,
-.dropdown__sublink {
+.dropdown__link {
     padding: 1.25rem 1.25rem 1.25rem 2.5rem;
     color: var(--white-color);
     background-color: var(--black-color-light);
@@ -208,16 +192,27 @@ a {
     column-gap: .5rem;
     font-weight: var(--font-semi-bold);
     transition: background-color .3s;
+    font-family: var(--body-font);
+    text-decoration: none;
+
+    @include mobile-dev {
+        padding: 0;
+        margin-left: -2.5rem;
+    }
+
+    @include tablet-dev {
+        padding: 0;
+        margin-left: -2.5rem;
+    }
 }
 
-.dropdown__link i,
-.dropdown__sublink i {
+
+.dropdown__link i {
     font-size: 1.25rem;
     font-weight: initial;
 }
 
-.dropdown__link:hover,
-.dropdown__sublink:hover {
+.dropdown__link:hover {
     background-color: var(--black-color);
 }
 
@@ -242,27 +237,15 @@ a {
 
 /*=============== DROPDOWN SUBMENU ===============*/
 .dropdown__add {
-    margin-left: auto;
 }
 
 .dropdown__sublink {
     background-color: var(--black-color-lighten);
 }
 
-/*=============== BREAKPOINTS ===============*/
-/* For small devices */
-@media screen and (max-width: 340px) {
-    .container {
-        margin-inline: 1rem;
-    }
-
-    .nav__link {
-        padding-inline: 1rem;
-    }
-}
 
 /* For large devices */
-@media screen and (min-width: 1118px) {
+@media screen and (min-width: 1024px) {
     .container {
         margin-inline: auto;
     }
@@ -313,16 +296,14 @@ a {
     .dropdown__link,
     .dropdown__sublink {
         padding-inline: 1rem 3.5rem;
-    }
 
-    .dropdown__subitem .dropdown__link {
-        padding-inline: 1rem;
-    }
+        @include mobile-dev {
+            padding-inline: 0;
+        }
 
-    .dropdown__submenu {
-        position: absolute;
-        left: 100%;
-        top: .5rem;
+        @include tablet-dev {
+            padding-inline: 0;
+        }
     }
 
     /* Show dropdown menu */
@@ -346,7 +327,7 @@ a {
 /*_breakpoint*/
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
-@media screen and (max-width: 340px) {
+@include mobile-dev{
     .container {
         margin-inline: 1rem;
     }
@@ -357,7 +338,7 @@ a {
 }
 
 /* For large devices */
-@media screen and (min-width: 1118px) {
+@media screen and (min-width: 1024px) {
     .container {
         margin-inline: auto;
     }
@@ -449,10 +430,17 @@ a {
     background-color: var(--black-color);
     box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
     z-index: var(--z-fixed);
+    padding: 24px 12px;
 }
 
 /*=============== NAV ===============*/
 .nav {
+    &__menu {
+        ul {
+            list-style: none;
+        }
+    }
+
     height: var(--header-height);
 
     &__logo,
@@ -501,7 +489,7 @@ a {
         height: max-content;
         inset: 0;
         margin: auto;
-        font-size: 1.25rem;
+        font-size: 36px;
         cursor: pointer;
         transition: opacity .1s, transform .4s;
     }
@@ -510,7 +498,7 @@ a {
         opacity: 0;
     }
     // Navigation for mobile devices
-    @media screen and (max-width: 1118px) {
+    @media screen and (max-width: 1024px) {
         &__menu {
             position: absolute;
             left: 0;
@@ -529,7 +517,7 @@ a {
 
         &__list {
             background-color: var(--black-color);
-            padding-top: 1rem;
+            padding-top: 4rem;
         }
     }
 
@@ -541,6 +529,7 @@ a {
         align-items: center;
         transition: background-color .3s;
         width: fit-content;
+        font-size: 16px;
 
         &:hover {
             color: var(--yellow-color);
@@ -553,7 +542,7 @@ a {
 /* Show menu */
 .show-menu {
     opacity: 1;
-    top: 4.5rem;
+    top: 6.5rem;
     pointer-events: initial;
 }
 
@@ -575,14 +564,14 @@ a {
     }
 
     &__arrow {
-        font-size: 1.25rem;
+        font-size: 2.25rem;
         font-weight: initial;
         transition: transform .4s;
     }
 
-    &__link,
-    &__sublink {
-        padding: 1.25rem;
+    &__link {
+        font-family: var(--body-font);
+        padding: 2rem;
         color: var(--white-color);
         background-color: var(--black-color);
         display: flex;
@@ -590,6 +579,15 @@ a {
         column-gap: .5rem;
         font-weight: var(--font-semi-bold);
         transition: background-color .3s;
+        font-size: 16px;
+
+        @include mobile-dev {
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        @include tablet-dev {
+            padding: 0 2rem 2rem 2rem;
+        }
 
         & i {
             font-size: 1.25rem;
@@ -631,4 +629,3 @@ a {
         background-color: var(--main-color);
     }
 }
-
