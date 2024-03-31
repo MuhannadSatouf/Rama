@@ -50,6 +50,46 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// ContactForm
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("contactForm")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString ContactForm => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "contactForm");
+
+		///<summary>
+		/// Contact Phones
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("contactPhones")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString ContactPhones => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "contactPhones");
+
+		///<summary>
+		/// Map Media
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("mapMedia")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops MapMedia => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "mapMedia");
+
+		///<summary>
+		/// MapSubtitle
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("mapSubtitle")]
+		public virtual string MapSubtitle => this.Value<string>(_publishedValueFallback, "mapSubtitle");
+
+		///<summary>
+		/// MapTitle
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("mapTitle")]
+		public virtual string MapTitle => this.Value<string>(_publishedValueFallback, "mapTitle");
+
+		///<summary>
 		/// Body Text
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]

@@ -254,6 +254,7 @@
         height: calc(var(--header-height) + 2rem);
         display: flex;
         justify-content: space-between;
+        margin:0;
     }
 
     .nav__toggle {
@@ -340,13 +341,14 @@
 /* For large devices */
 @media screen and (min-width: 1024px) {
     .container {
-        margin-inline: auto;
+        margin:0;
     }
 
     .nav {
         height: calc(var(--header-height) + 2rem);
         display: flex;
         justify-content: space-between;
+        margin: 0;
 
         &__toggle {
             display: none;
@@ -629,3 +631,5 @@
         background-color: var(--main-color);
     }
 }
+
+

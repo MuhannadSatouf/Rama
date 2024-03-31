@@ -1,0 +1,61 @@
+.umbraco-forms-label {
+    width: fit-content;
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: black;
+}
+
+.umbraco-forms-field-wrapper {
+    & > input::placeholder {
+        font-family: $font-family;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 28px;
+        color: black;
+    }
+}
+
+.col-md-12 {
+    & > input {
+        background-color: #252525 !important;
+        color: white !important;
+        font-family: $font-family;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 28px;
+    }
+}
+
+.umbraco-forms-container{
+    padding: 0 !important;
+}
+
+.umbraco-forms-caption {
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: black;
+}
+
+.col-md-12{
+    padding: 0 !important;
+}
+
+
+//Contact Page
+.contact-page-top {
+    margin-top: 100px;
+    display: flex;
+    flex-direction:row;
+}
+
+..umbraco-forms-form{
+    padding:0;
+}

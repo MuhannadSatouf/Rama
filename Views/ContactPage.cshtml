@@ -2,5 +2,40 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ContactPage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
-	Layout = "MasterPage.cshtml";
+    Layout = "MasterPage.cshtml";
 }
+
+@{
+    var model = Model;
+    var model2 = Model;
+}
+
+<div class="grid-system grid-system-within-boundaries">
+    <div class="grid-full-width">
+
+        <div class="contact-page-top">
+            <div class="">
+                @Model.Value("title")
+                @Model.Value("bodyText")
+                @Model.Value("contactPhones")
+            </div>
+
+            @* Form Rendering*@
+            @Model.Value("contactForm")
+        </div>
+
+
+        @if (Model.MapMedia != null)
+        {
+            <div class="map-conatiner">
+                @Model.Value("mapTitle")
+                @Model.Value("mapSubtitle")
+
+                @if (Model.MapMedia.Url() != null && Model.MapMedia.Url() != string.Empty)
+                {
+                    <img src="@Model.MapMedia.Url()" alt="Map" class="map">
+                }
+            </div>
+        }
+    </div>
+</div>
