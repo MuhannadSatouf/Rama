@@ -37,26 +37,29 @@
                         <p>@address</p>
                     </div>
                 }
-
-                <ul class="footer-links-container__ul">
-                    @foreach (var item in navigationItems)
-                    {
-                        var content = item.Content;
-                        var title = content.Value("title");
-                        var linkObject = content.Value("Link");
-                        var link = linkObject as Umbraco.Cms.Core.Models.Link;
-                        var url = string.Empty;
-                        var subLinks = content.Value("subLinks");
-                        if (link != null)
+                @if (navigationItems != null)
+                {
+                    <ul class="footer-links-container__ul">
+                        @foreach (var item in navigationItems)
                         {
-                            url = link.Url;
-                        }
+                            var content = item.Content;
+                            var title = content.Value("title");
+                            var linkObject = content.Value("Link");
+                            var link = linkObject as Umbraco.Cms.Core.Models.Link;
+                            var url = string.Empty;
+                            var subLinks = content.Value("subLinks");
+                            if (link != null)
+                            {
+                                url = link.Url;
+                            }
 
-                        <li class="nav-item footer-links-container--item">
-                            <a href="@url" class="nav-link">@title </a>
-                        </li>
-                    }
-                </ul>
+                            <li class="nav-item footer-links-container--item">
+                                <a href="@url" class="nav-link">@title </a>
+                            </li>
+                        }
+                    </ul>
+                }
+
 
             </div>
             <div class="footer__container--bottom">
