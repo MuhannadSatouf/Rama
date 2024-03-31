@@ -14,14 +14,16 @@
     <div class="grid-full-width">
 
         <div class="contact-page-top">
-            <div class="">
+            <div class="contact-page-top__text">
                 @Model.Value("title")
                 @Model.Value("bodyText")
                 @Model.Value("contactPhones")
             </div>
 
             @* Form Rendering*@
+            <div class="contact-page-top__form">
             @Model.Value("contactForm")
+            </div>
         </div>
 
 
