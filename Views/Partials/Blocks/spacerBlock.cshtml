@@ -1,0 +1,24 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.Blocks;
+
+@{
+
+    var spacerClassDesktop = !string.IsNullOrEmpty(Model.Content.Value("spacerDesktop").ToString()) ? Int32.Parse(Model.Content.Value("spacerDesktop").ToString()) : 0;
+    var spacerClassTablet = !string.IsNullOrEmpty(Model.Content.Value("spacerTablet").ToString()) ? Int32.Parse(Model.Content.Value("spacerTablet").ToString()) : 0;
+    var spacerClassMobile = !string.IsNullOrEmpty(Model.Content.Value("spacerMobile").ToString()) ? Int32.Parse(Model.Content.Value("spacerMobile").ToString()) : 0;
+
+    var spacerDesktopString = $"{spacerClassDesktop}px";
+    var spacerTabletString = $"{spacerClassTablet}px";
+    var spacerMobileString = $"{spacerClassMobile}px";
+
+}
+
+<div class="spacer-block"
+     style="
+            --spacerDesktopString: @spacerDesktopString;
+            --spacerTabletString: @spacerTabletString;
+            --spacerMobileString: @spacerMobileString;
+        ">
+</div>
+
