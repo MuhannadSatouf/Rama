@@ -1,0 +1,75 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.Blocks;
+
+@{
+    var image = Model.Content.Value<IPublishedContent>("image");
+    var video = Model.Content.Value<IPublishedContent>("video");
+    var title = Model.Content.Value("title");
+    var wholeWidth = Model.Content.Value("wholeWidth");
+    var isWholeWidth = false;
+    if (wholeWidth != null && wholeWidth.ToString().Equals("True"))
+    {
+        isWholeWidth = true;
+    }
+
+    var topBannerBlock = Model.Content.Value("isTopBanner");
+    var isTopBanner = false;
+    if (topBannerBlock != null && topBannerBlock.ToString().Equals("True"))
+    {
+        isTopBanner = true;
+        isWholeWidth = true;
+    }
+}
+
+@if (image != null || video != null)
+{
+    <div class="grid-system @(isWholeWidth ? "" : "grid-data-inside-max-width") ">
+        <div class="@(isWholeWidth ? "grid-whole-width" : "grid-full-width") banner-block">
+            @if (!string.IsNullOrEmpty(title.ToString()) || isTopBanner)
+            {
+                <div class="banner-block__container banner-block__overlay-tint @(isTopBanner ? "seventyFiveHeight" : "")">
+                    <div class="bannerMedia--container">
+                        @if (image != null)
+                        {
+                            <img class="bannerMedia @(isTopBanner ? "seventyFiveHeight" : "")" src="@image.GetCropUrl()" alt="@title" />
+                        }
+                        else
+                        {
+                            <video class="bannerVideo @(isTopBanner ? "seventyFiveHeight" : "")" autoplay loop>
+                                <source src="@video.GetCropUrl()" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        }
+                    </div>
+                    @if (!string.IsNullOrEmpty(title.ToString()))
+                    {
+                        <div class="banner-block__text grid-data-inside-max-width">
+                            <div class="banner-block__text__header banner-block__text__header--strong     banner-headerLimitation">
+                                <h3>@title</h3>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="bannerMedia--container">
+                    @if (image != null)
+                    {
+                        <img class="bannerMedia @(isTopBanner ? "seventyFiveHeight" : "")" src="@image.GetCropUrl()" alt="@title" />
+                    }
+                    else
+                    {
+                        <video class="bannerVideo @(isTopBanner ? "seventyFiveHeight" : "")" autoplay loop>
+                            <source src="@video.GetCropUrl()" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    }
+                </div>
+            }
+
+        </div>
+    </div>
+
+}

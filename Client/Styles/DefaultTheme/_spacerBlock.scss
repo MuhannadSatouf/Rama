@@ -1,0 +1,13 @@
+.spacer-block {
+    @include desktop-dev {
+        margin-top: var(--spacerDesktopString);
+    }
+
+    @include tablet-dev {
+        margin-top: var(--spacerTabletString);
+    }
+
+    @include mobile-dev {
+        margin-top: var(--spacerMobileString);
+    }
+}
