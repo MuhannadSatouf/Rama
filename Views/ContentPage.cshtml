@@ -2,5 +2,109 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ContentPage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
-	Layout = "MasterPage.cshtml";
+    Layout = "MasterPage.cshtml";
 }
+
+@{
+    var image = Model.Value<IPublishedContent>("whoWeAreImage");
+
+    var aboutUsPage = Umbraco.AssignedContentItem.AncestorOrSelf<ContentPage>();
+    var vesionItems = aboutUsPage?.VesionItem;
+    var membersConntainer = aboutUsPage?.MembersConntainer;
+}
+
+
+<div class="grid-system grid-system-within-boundaries">
+    <div class="grid-full-width aboutus-page">
+        <div class="aboutus-page--container">
+            <div class="aboutus-page--container__title">
+                @Model.Value("WhoWeAreTitle")
+            </div>
+            <div class="aboutus-page--container__subTitle">
+                @Model.Value("whoWeAreSubtitle")
+            </div>
+            <div class="aboutus-page--container__bodyText">
+                @Model.Value("WhoWeAreBodyText")
+            </div>
+            @if (image != null)
+            {
+                <img src="@image.GetCropUrl()" />
+            }
+        </div>
+
+        <div class="aboutus-page--items-list">
+            @if (vesionItems != null && vesionItems.Any())
+            {
+                foreach (var item in vesionItems)
+                {
+                    var content = item.Content;
+                    var itemTitle = content.Value("aboutUsItemTitle");
+                    var itembodyText = content.Value("aboutUsBodyText");
+                    var itemImage = content.Value<IPublishedContent>("aboutUsItemMedia");
+
+                    <div class="aboutus-page--items-list__item">
+                        @if (itemImage != null)
+                        {
+                            <div class="aboutus-page--image-container">
+                                <img src="@itemImage.GetCropUrl()" />
+                            </div>
+                        }
+
+                        @if (itemTitle != null)
+                        {
+                            <div class="aboutus-page--items-list__item--title">
+                                @itemTitle
+                            </div>
+                        }
+
+                        @if (itembodyText != null)
+                        {
+                            <div class="aboutus-page--items-list__item--body">
+                                @itembodyText
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+
+
+        <div class="aboutus-page--member-list">
+            @if (membersConntainer != null && membersConntainer.Any())
+            {
+                foreach (var item in membersConntainer)
+                {
+                    var content = item.Content;
+                    var memberName = content.Value("memberName");
+                    var memberPosition = content.Value("memberPosition");
+                    var memberImage = content.Value<IPublishedContent>("memberImage");
+
+                    <div class="aboutus-page--member-list__item">
+                        @if (memberImage != null)
+                        {
+                            <div class="aboutus-page--image-container">
+                                <img src="@memberImage.GetCropUrl()" />
+                            </div>
+                        }
+
+                        @if (memberName != null)
+                        {
+                            <div class="aboutus-page--member-list__item--title">
+                                @memberName
+                            </div>
+                        }
+
+                        @if (memberPosition != null)
+                        {
+                            <div class="aboutus-page--member-list__item--body">
+                                @memberPosition
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+

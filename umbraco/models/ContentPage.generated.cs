@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Content Page</summary>
 	[PublishedModel("contentPage")]
-	public partial class ContentPage : PublishedContentModel, IPageProperties, IVisibilityProperties
+	public partial class ContentPage : PublishedContentModel, IMemberProperties, IPageProperties, IVisibilityProperties
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -48,6 +48,54 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		}
 
 		// properties
+
+		///<summary>
+		/// VesionItem
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("vesionItem")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel VesionItem => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "vesionItem");
+
+		///<summary>
+		/// WhoWeAreBodyText
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("WhoWeAreBodyText")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString WhoWeAreBodyText => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "WhoWeAreBodyText");
+
+		///<summary>
+		/// WhoWeAreImage
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("WhoWeAreImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops WhoWeAreImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "WhoWeAreImage");
+
+		///<summary>
+		/// WhoWeAreSubtitle
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("whoWeAreSubtitle")]
+		public virtual string WhoWeAreSubtitle => this.Value<string>(_publishedValueFallback, "whoWeAreSubtitle");
+
+		///<summary>
+		/// WhoWeAreTitle
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("WhoWeAreTitle")]
+		public virtual string WhoWeAreTitle => this.Value<string>(_publishedValueFallback, "WhoWeAreTitle");
+
+		///<summary>
+		/// membersConntainer
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("membersConntainer")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel MembersConntainer => global::Umbraco.Cms.Web.Common.PublishedModels.MemberProperties.GetMembersConntainer(this, _publishedValueFallback);
 
 		///<summary>
 		/// Body Text
