@@ -7,71 +7,67 @@
 }
 
 <header class="header">
-    <div class="grid-system grid-system-within-boundaries">
-        <div class="grid-full-width">
-            <nav class="nav container">
-                <div class="nav__data">
-                    <a href="@homePage.Url()" class="nav__logo">
-                        <span class="nav__logo--icon"></span>
-                        <span class="nav__logo--text">Design &amp; Contracting</span>
-                    </a>
-                    <div class="nav__toggle" id="nav-toggle">
-                        <i class="ri-menu-line nav__burger"></i>
-                        <i class="ri-close-line nav__close"></i>
-                    </div>
-                </div>
+    <nav class="nav container">
+        <div class="nav__data">
+            <a href="@homePage.Url()" class="nav__logo">
+                <span class="nav__logo--icon"></span>
+                <span class="nav__logo--text">Design &amp; Contracting</span>
+            </a>
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-menu-line nav__burger"></i>
+                <i class="ri-close-line nav__close"></i>
+            </div>
+        </div>
 
 
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        @if (navigationItems != null && navigationItems.Any())
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                @if (navigationItems != null && navigationItems.Any())
+                {
+                    var dropdownId = 0;
+                    foreach (var item in navigationItems)
+                    {
+                        var content = item.Content;
+                        var title = content.Value("title");
+                        var linkObject = content.Value("Link");
+                        var link = linkObject as Umbraco.Cms.Core.Models.Link;
+                        var url = string.Empty;
+                        var subLinks = content.Value("subLinks");
+                        if (link != null)
                         {
-                            var dropdownId = 0;
-                            foreach (var item in navigationItems)
+                            url = link.Url;
+                        }
+
+                        if (subLinks != null)
+                        {
+                            var links = subLinks as IEnumerable<Umbraco.Cms.Core.Models.Link>;
+                            if (links != null && links.Any())
                             {
-                                var content = item.Content;
-                                var title = content.Value("title");
-                                var linkObject = content.Value("Link");
-                                var link = linkObject as Umbraco.Cms.Core.Models.Link;
-                                var url = string.Empty;
-                                var subLinks = content.Value("subLinks");
-                                if (link != null)
-                                {
-                                    url = link.Url;
-                                }
+                                <li class="dropdown__item">
+                                    <div class="nav__link">
+                                        @title <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                                    </div>
 
-                                if (subLinks != null)
-                                {
-                                    var links = subLinks as IEnumerable<Umbraco.Cms.Core.Models.Link>;
-                                    if (links != null && links.Any())
-                                    {
-                                        <li class="dropdown__item">
-                                            <div class="nav__link">
-                                                @title <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-                                            </div>
-
-                                            <ul class="dropdown__menu">
-                                                @foreach (var subLink in links)
-                                                {
-                                                    <li>
-                                                        <a class="dropdown__link" href="@subLink.Url" target="@subLink.Target">@subLink.Name</a>
-                                                    </li>
-                                                }
-                                            </ul>
-                                        </li>
-                                    }
-                                    else
-                                    {
-                                        <li><a class="nav__link" href="@url">@title</a></li>
-                                    }
-                                }
+                                    <ul class="dropdown__menu">
+                                        @foreach (var subLink in links)
+                                        {
+                                            <li>
+                                                <a class="dropdown__link" href="@subLink.Url" target="@subLink.Target">@subLink.Name</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li><a class="nav__link" href="@url">@title</a></li>
                             }
                         }
-                    </ul>
-                </div>
-            </nav>
+                    }
+                }
+            </ul>
         </div>
-    </div>
+    </nav>
 </header>
 
 

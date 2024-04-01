@@ -1,4 +1,4 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+﻿﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ContactPage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
@@ -15,15 +15,18 @@
 
         <div class="contact-page-top">
             <div class="contact-page-top__text">
-                @Model.Value("title")
-                @Model.Value("bodyText")
-                @Model.Value("contactPhones")
+                <div class="contact-page-top__text--title">
+                    @Model.Value("title")
+                </div>
+                <div class="contact-text">
+                    @Model.Value("bodyText")
+                    @Model.Value("contactPhones")
+                </div>
+
             </div>
 
             @* Form Rendering*@
-            <div class="contact-page-top__form">
             @Model.Value("contactForm")
-            </div>
         </div>
 
 
@@ -41,3 +44,25 @@
         }
     </div>
 </div>
+
+<script>
+    window.addEventListener('load', function () {
+        let wholeURL = window.location.href;
+        const contactTitleContainer = document.querySelector('.contact-page-top__text--title');
+        const contactTextElements = document.querySelector('.contact-text');
+        const paragraphs = document.querySelectorAll('.contact-text p');
+
+        if (wholeURL.indexOf("/ar/") !== -1) {
+            if (contactTitleContainer) {
+                contactTitleContainer.style.textAlign = "right";
+                contactTextElements.style.textAlign = "right";
+                if (paragraphs) {
+                    paragraphs.forEach(function (element) {
+
+                        element.style.justifyContent = "flex-end";
+                    });
+                }
+            }
+        }
+    });
+</script>
