@@ -31,7 +31,7 @@
     }
 }
 
-.umbraco-forms-container{
+.umbraco-forms-container {
     padding: 0 !important;
 }
 
@@ -44,7 +44,7 @@
     color: black;
 }
 
-.col-md-12{
+.col-md-12 {
     padding: 0 !important;
 }
 
@@ -53,9 +53,220 @@
 .contact-page-top {
     margin-top: 100px;
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
+
+    &__text {
+        margin-right: 100px;
+        font-family: $font-family;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 28px;
+        width: 50%;
+        justify-content: center;
+        align-content: center;
+        display: flex;
+        flex-direction: column;
+        padding-right: 40px;
+
+        &--title {
+            & > p {
+
+                & > a {
+                    margin-right: 100px;
+                    font-family: $font-family;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 20px;
+                    color: red;
+                }
+            }
+        }
+
+        &--title {
+            font-family: $font-family;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+
+            @include mobile-dev {
+                margin-right: 0;
+            }
+        }
+
+        @include mobile-dev {
+            width: 100%;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        @include tablet-dev {
+            padding-right: 18px;
+            margin-right: 20px;
+        }
+    }
+
+    @include mobile-dev {
+        flex-direction: column;
+    } 
 }
 
-.umbraco-forms-form{
-    padding:0;
+.umbraco-forms-page {
+    @include tablet-dev {
+        padding-right: 0 !important;
+    }
+}
+
+.umbraco-forms-fieldset {
+    @include tablet-dev {
+        padding-right: 0 !important;
+    }
+}
+
+.umbraco-forms-form {
+    padding: 0;
+    width: 50%;
+
+    @include mobile-dev {
+        width: 100%;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+}
+
+.umbraco-forms-caption {
+    @include mobile-dev {
+        margin: 0;
+        border-top: 1px solid black;
+    }
+}
+
+.umbraco-forms-form input {
+    max-width: 100% !important;
+    height: 50px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3),0 2px 6px 2px rgba(60,64,67,.15);
+}
+
+.umbraco-forms-form textarea {
+    max-width: 100% !important;
+    height: 50px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3),0 2px 6px 2px rgba(60,64,67,.15);
+}
+
+input {
+    width: 100% !important;
+    min-width: 100% !important;
+}
+
+textarea {
+    width: 100% !important;
+    min-width: 100% !important;
+}
+
+.contact-text {
+
+    & > p:first-child {
+        margin-top: 12px;
+        font-weight: 400;
+
+        @include mobile-dev {
+            padding-right: 0;
+        }
+    }
+
+    & > p {
+        font-family: $font-family;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 28px;
+        color: black;
+        display: flex;
+        flex-direction: row;
+
+        & > a {
+            color: black;
+            text-decoration: none;
+            font-weight: 400;
+            margin-left: 8px;
+        }
+
+        & > a:hover {
+            color: #eeb700;
+        }
+    }
+
+    & > span {
+        font-family: $font-family;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 28px;
+        color: black;
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+    }
+
+    & > p > a {
+        color: black;
+        text-decoration: none;
+        font-weight: 400;
+    }
+}
+
+.wixui-rich-text__anchor {
+    font-weight: 400;
+}
+
+.map-conatiner {
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 28px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    text-align: center;
+    border-top: 1px solid black;
+    margin-top: 24px;
+    padding-top: 24px;
+}
+
+.wixui-rich-text__text {
+    & > a {
+        font-family: $font-family;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 28px;
+        color: black;
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+        margin-left: 8px;
+    }
+
+    & > a:hover {
+        color: #eeb700;
+    }
+}
+
+.umbraco-forms-field-wrapper {
+    & > input:focus {
+        border: 1px solid #f4d574 !important;
+        outline: none;
+        box-shadow: 0 1px 2px 0 #f4d574,0 2px 6px 2px #f4d574 !important;
+    }
+
+    & > textarea:focus {
+        border: 1px solid #eeb700 !important;
+        outline: none;
+        box-shadow: 0 1px 2px 0 #f4d574,0 2px 6px 2px #f4d574 !important;
+    }
 }
