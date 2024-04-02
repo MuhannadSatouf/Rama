@@ -6,10 +6,11 @@
 }
 
 @{
-    var model = Model;
-    var model2 = Model;
+    var blocks = Model.Value("blocks");
 }
 
+
+@Html.GetBlockListHtml(Model, "blocks")
 <div class="grid-system grid-system-within-boundaries">
     <div class="grid-full-width">
 

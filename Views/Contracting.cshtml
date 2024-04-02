@@ -4,3 +4,9 @@
 @{
 	Layout = "MasterPage.cshtml";
 }
+
+@{
+    var blocks = Model.Value("blocks");
+}
+
+@Html.GetBlockListHtml(Model, "blocks")
