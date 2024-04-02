@@ -50,11 +50,59 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// Architecture Projects
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("architectureProjects")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel ArchitectureProjects => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "architectureProjects");
+
+		///<summary>
+		/// architecture section title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("architectureSectionTitle")]
+		public virtual string ArchitectureSectionTitle => this.Value<string>(_publishedValueFallback, "architectureSectionTitle");
+
+		///<summary>
 		/// Blocks
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("blocks")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Blocks => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "blocks");
+
+		///<summary>
+		/// Contracting Projects
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("contractingProjects")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel ContractingProjects => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "contractingProjects");
+
+		///<summary>
+		/// Contracting Section Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("contractingSectionTitle")]
+		public virtual string ContractingSectionTitle => this.Value<string>(_publishedValueFallback, "contractingSectionTitle");
+
+		///<summary>
+		/// Interior Projects
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("interiorProjects")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel InteriorProjects => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "interiorProjects");
+
+		///<summary>
+		/// Interio Section Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("interioSectionTitle")]
+		public virtual string InterioSectionTitle => this.Value<string>(_publishedValueFallback, "interioSectionTitle");
 	}
 }

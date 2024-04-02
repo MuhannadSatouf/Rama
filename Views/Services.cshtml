@@ -7,7 +7,191 @@
 
 @{
     var blocks = Model.Value("blocks");
+
+    var servicePage = Umbraco.AssignedContentItem.AncestorOrSelf<Services>();
+    var architectureProjects = servicePage?.ArchitectureProjects;
+    var interiorProjects = servicePage?.InteriorProjects;
+    var contractingProjects = servicePage?.ContractingProjects;
+    var architectureSectionTitle = servicePage?.ArchitectureSectionTitle;
+    var interiorSectionTitle = servicePage?.InterioSectionTitle;
+    var contractingSectionTitle = servicePage?.ContractingSectionTitle;
 }
 
 
 @Html.GetBlockListHtml(Model, "blocks")
+
+<div class="grid-system grid-data-inside-max-width ">
+    <div class="service-page grid-full-width">
+
+        @if (architectureProjects != null && architectureProjects.Count > 0)
+        {
+            <div class="service-page__section-title">
+                @if (architectureSectionTitle != null && !string.IsNullOrEmpty(architectureSectionTitle))
+                {
+                    <div class="service-page__section-title--title">
+                        @architectureSectionTitle
+                    </div>
+                }
+            </div>
+
+            <div class="service-page__project">
+                @foreach (var project in architectureProjects)
+                {
+                    var content = project.Content;
+                    var projectTitle = content.Value("projectTitle");
+                    var projectSubtitle = content.Value("projectSubtitle");
+                    var serviceImage = content.Value<IPublishedContent>("serviceImage");
+                    var projectLinkObject = content.Value<object>("projectPageLink");
+                    var url = "";
+                    if (projectLinkObject != null && projectLinkObject is List<Umbraco.Cms.Core.Models.Link> projectLinkList && projectLinkList.Any())
+                    {
+                        url = projectLinkList[0].Url;
+                    }
+                    <a href="@url" class="service-page__project-container">
+                            @if (serviceImage != null)
+                            {
+                                <div class="service-page__project--image">
+                                    <img src="@serviceImage.GetCropUrl()" />
+                                </div>
+                            }
+
+                            @if (projectTitle != null)
+                            {
+                                <div class="service-page__project--title">
+                                    @projectTitle
+                                </div>
+                            }
+
+                            @if (projectSubtitle != null)
+                            {
+                                <div class="service-page__project--subtitle">
+                                    @projectSubtitle
+                                </div>
+                            }
+                    </a>
+                }
+            </div>
+        }
+
+        @if (interiorProjects != null && interiorProjects.Count > 0)
+        {
+            <div class="dashed-line"></div>
+            <div class="service-page__section-title">
+                @if (interiorSectionTitle != null && !string.IsNullOrEmpty(interiorSectionTitle))
+                {
+                    <div class="service-page__section-title--title">
+                        @interiorSectionTitle
+                    </div>
+                }
+            </div>
+            <div class="service-page__project">
+                @foreach (var project in interiorProjects)
+                {
+                    var content = project.Content;
+                    var projectTitle = content.Value("projectTitle");
+                    var projectSubtitle = content.Value("projectSubtitle");
+                    var serviceImage = content.Value<IPublishedContent>("serviceImage");
+                    var projectLinkObject = content.Value<object>("projectPageLink");
+                    var url = "";
+                    if (projectLinkObject != null && projectLinkObject is List<Umbraco.Cms.Core.Models.Link> projectLinkList && projectLinkList.Any())
+                    {
+                        url = projectLinkList[0].Url;
+                    }
+                         <a href="@url" class="service-page__project-container">
+                        @if (serviceImage != null)
+                        {
+                            <div class="service-page__project--image">
+                                <img src="@serviceImage.GetCropUrl()" />
+                            </div>
+                        }
+
+                        @if (projectTitle != null)
+                        {
+                            <div class="service-page__project--title">
+                                @projectTitle
+                            </div>
+                        }
+
+                        @if (projectSubtitle != null)
+                        {
+                            <div class="service-page__project--subtitle">
+                                @projectSubtitle
+                            </div>
+                        }
+                    </a>
+                }
+            </div>
+            <div class="dashed-line"></div>
+        }
+
+        @if (contractingProjects != null && contractingProjects.Count > 0)
+        {
+            <div class="service-page__section-title">
+                @if (contractingSectionTitle != null && !string.IsNullOrEmpty(contractingSectionTitle))
+                {
+                    <div class="service-page__section-title--title">
+                        @contractingSectionTitle
+                    </div>
+                }
+            </div>
+            <div class="service-page__project">
+                @foreach (var project in contractingProjects)
+                {
+                    var content = project.Content;
+                    var projectTitle = content.Value("projectTitle");
+                    var projectSubtitle = content.Value("projectSubtitle");
+                    var serviceImage = content.Value<IPublishedContent>("serviceImage");
+                    var projectLinkObject = content.Value<object>("projectPageLink");
+                    var url = "";
+                    if (projectLinkObject != null && projectLinkObject is List<Umbraco.Cms.Core.Models.Link> projectLinkList && projectLinkList.Any())
+                    {
+                        url = projectLinkList[0].Url;
+                    }
+
+                      <a href="@url" class="service-page__project-container">
+
+                        @if (serviceImage != null)
+                        {
+                            <div class="service-page__project--image">
+                                <img src="@serviceImage.GetCropUrl()" />
+                            </div>
+                        }
+
+                        @if (projectTitle != null)
+                        {
+                            <div class="service-page__project--title">
+                                @projectTitle
+                            </div>
+                        }
+
+                        @if (projectSubtitle != null)
+                        {
+                            <div class="service-page__project--subtitle">
+                                @projectSubtitle
+                            </div>
+                        }
+                    </a>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function () {
+        let wholeURL = window.location.href;
+        console.log(wholeURL);
+        const projectTitleContainer = document.querySelector('.service-page__project--title');
+        const projectTextElements = document.querySelector('.service-page__project--subtitle');
+
+        if (wholeURL.indexOf("/ar/") !== -1) {
+            if (projectTitleContainer) {
+                projectTitleContainer.style.textAlign = "right";
+            }
+            if (projectTextElements) {
+                    projectTextElements.style.textAlign = "right";
+            }
+        }
+    });
+
+</script>

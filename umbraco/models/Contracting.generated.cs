@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Contracting Page</summary>
+	/// <summary>Contracting</summary>
 	[PublishedModel("contracting")]
 	public partial class Contracting : PublishedContentModel, IPageProperties, IVisibilityProperties
 	{

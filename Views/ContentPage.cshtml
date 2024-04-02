@@ -9,8 +9,8 @@
     var image = Model.Value<IPublishedContent>("whoWeAreImage");
 
     var aboutUsPage = Umbraco.AssignedContentItem.AncestorOrSelf<ContentPage>();
-    var vesionItems = aboutUsPage?.VesionItem;
-    var membersConntainer = aboutUsPage?.MembersConntainer;
+    var visionItems = aboutUsPage?.VesionItem;
+    var membersContainer = aboutUsPage?.MembersConntainer;
 }
 
 
@@ -33,9 +33,9 @@
         </div>
 
         <div class="aboutus-page--items-list">
-            @if (vesionItems != null && vesionItems.Any())
+            @if (visionItems != null && visionItems.Any())
             {
-                foreach (var item in vesionItems)
+                foreach (var item in visionItems)
                 {
                     var content = item.Content;
                     var itemTitle = content.Value("aboutUsItemTitle");
@@ -70,9 +70,9 @@
 
 
         <div class="aboutus-page--member-list">
-            @if (membersConntainer != null && membersConntainer.Any())
+            @if (membersContainer != null && membersContainer.Any())
             {
-                foreach (var item in membersConntainer)
+                foreach (var item in membersContainer)
                 {
                     var content = item.Content;
                     var memberName = content.Value("memberName");
