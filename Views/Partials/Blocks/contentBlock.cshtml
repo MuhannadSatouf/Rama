@@ -1,0 +1,47 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks;
+
+@{
+    var image = Model.Content.Value<IPublishedContent>("image");
+    var title = Model.Content.Value("title");
+    var subtitle = Model.Content.Value("subtitle");
+    var imagePosition = Model.Content.Value("imagePosition");
+
+    var isImageLeftPositioned = false;
+    if (imagePosition != null && imagePosition.ToString().Equals("Left"))
+    {
+        isImageLeftPositioned = true;
+    }
+
+    var pageLink = Model.Content.Value<Link>("pageLink");
+
+}
+
+@if (image != null)
+{
+    <div class="grid-system grid-data-inside-max-width content-block">
+        <div class="content-block__image @(isImageLeftPositioned ? "grid-half-width" : " grid-half-width-reverse")">
+            <img class="" src="@image.GetCropUrl()" alt="@title" />
+        </div>
+        <div class="@(isImageLeftPositioned ? "grid-half-width" : " grid-half-width-reverse")">
+            <div class="content-block__text">
+                @if (!string.IsNullOrEmpty(title.ToString()))
+                {
+                    <h3>@title</h3>
+                }
+                @if (!string.IsNullOrEmpty(subtitle.ToString()))
+                {
+                    <p>@subtitle</p>
+                }
+                @if (pageLink != null && !string.IsNullOrEmpty(pageLink.Url))
+                {
+                    <div class="content-block__text--cta">
+                        <a href="@pageLink.Url" target="@pageLink.Target">@pageLink.Name</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
