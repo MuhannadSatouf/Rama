@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Interior Page</summary>
+	/// <summary>Interior</summary>
 	[PublishedModel("interior")]
 	public partial class Interior : PublishedContentModel, IPageProperties, IVisibilityProperties
 	{
