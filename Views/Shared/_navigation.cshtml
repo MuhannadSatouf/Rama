@@ -3,7 +3,9 @@
 
 @{
     var homePage = Umbraco.AssignedContentItem.AncestorOrSelf<HomePage>();
-    var navigationItems = homePage.MainNavigation;
+    var navigationItems = homePage?.MainNavigation;
+    var languages = homePage?.MainLanguages;
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0, 2);
 }
 
 <header class="header">
@@ -64,7 +66,81 @@
                         }
                     }
                 }
+                <div class="languages-selector-mobile__line"></div>
+            <div id="language-selector-mobile" class="languages-selector-mobile">
+                @if (languages != null && languages.Any())
+                {
+                    var isSpanDisplayed = false;
+
+                    foreach (var language in languages)
+                    {
+                        var content = language.Content;
+                        var languageTitle = content.Value("language");
+                        var linkObjectList = content.Value("Link") as List<Umbraco.Cms.Core.Models.Link>;
+                        var url = string.Empty;
+                        var iconeType = content.Value("Icon") as Umbraco.Cms.Core.Models.MediaWithCrops;
+                        var selectedUrl = string.Empty;
+
+                        if (linkObjectList != null && linkObjectList.Count > 0)
+                        {
+                            var firstLink = linkObjectList[0];
+                            url = firstLink.Url;
+                            selectedUrl = url?.Trim('/');
+                            var languageLinkId = $"language-{Guid.NewGuid()}";
+                            @if (iconeType != null && selectedUrl == currentCulture)
+                            {
+                                <div class="languages-selector-mobile__image-container">
+                                    <img src="@iconeType.GetCropUrl()" />
+                                </div>
+                            }
+                            <a id="@languageLinkId" class="language" href="#" data-language-url="@url">@languageTitle</a>
+                            @if (!isSpanDisplayed)
+                            {
+                                isSpanDisplayed = true;
+                                <span class="languages-selector-mobile--span">/</span>
+                            }
+                        }
+                    }
+                }
+            </div>
             </ul>
+        </div>
+
+        <div id="language-selector" class="languages-selector">
+            @if (languages != null && languages.Any())
+            {
+                var isSpanDisplayed = false;
+
+                foreach (var language in languages)
+                {
+                    var content = language.Content;
+                    var languageTitle = content.Value("language");
+                    var linkObjectList = content.Value("Link") as List<Umbraco.Cms.Core.Models.Link>;
+                    var url = string.Empty;
+                    var iconeType = content.Value("Icon") as Umbraco.Cms.Core.Models.MediaWithCrops;
+                    var selectedUrl = string.Empty;
+
+                    if (linkObjectList != null && linkObjectList.Count > 0)
+                    {
+                        var firstLink = linkObjectList[0];
+                        url = firstLink.Url;
+                        selectedUrl = url?.Trim('/');
+                        var languageLinkId = $"language-{Guid.NewGuid()}";
+                        @if (iconeType != null && selectedUrl == currentCulture)
+                        {
+                            <div class="languages-selector__image-container">
+                                <img src="@iconeType.GetCropUrl()" />
+                            </div>
+                        }
+                        <a id="@languageLinkId" class="language" href="#" data-language-url="@url">@languageTitle</a>
+                        @if (!isSpanDisplayed)
+                        {
+                            isSpanDisplayed = true;
+                            <span class="languages-selector--span">/</span>
+                        }
+                    }
+                }
+            }
         </div>
     </nav>
 </header>
@@ -83,4 +159,30 @@
     }
 
     showMenu('nav-toggle', 'nav-menu')
+
+    //Changing the language
+    document.querySelectorAll('.language').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            let languageUrl = link.getAttribute('data-language-url');
+            let currentPageUrl = window.location.href;
+
+            // Remove trailing slash from languageUrl if present
+            languageUrl = languageUrl.replace(/^\/|\/$/g, '');
+
+            // Extract the current language segment from the URL
+            let currentLanguageSegment = currentPageUrl.match(/\/(en|ar)\//);
+            if (currentLanguageSegment) {
+                // Replace the current language segment with the selected language
+                let newUrl = currentPageUrl.replace(currentLanguageSegment[0], "/" + languageUrl + "/");
+                window.location.href = newUrl;
+            } else {
+                // If the URL doesn't contain a language segment, prepend it to the domain
+                let domain = window.location.origin.replace(/\/$/, ''); // Remove trailing slash from the domain
+                let currentPagePath = currentPageUrl.replace(domain, '').replace(/(^\w+:|^)\/\//, ''); // Remove domain from the current URL
+                let newUrl = domain + "/" + languageUrl + "/" + currentPagePath;
+                window.location.href = newUrl;
+            }
+        });
+    });
 </script>

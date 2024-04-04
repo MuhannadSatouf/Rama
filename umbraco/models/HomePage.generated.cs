@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>HomePage</summary>
 	[PublishedModel("homePage")]
-	public partial class HomePage : PublishedContentModel, IFooterProperties, IPageProperties, ISiteNavigationProperties
+	public partial class HomePage : PublishedContentModel, IFooterProperties, IPageProperties, ISiteLanguageProperties, ISiteNavigationProperties
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -112,6 +112,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("title")]
 		public virtual string Title => global::Umbraco.Cms.Web.Common.PublishedModels.PageProperties.GetTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Main Languages
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.1+cd47bdb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("mainLanguages")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel MainLanguages => global::Umbraco.Cms.Web.Common.PublishedModels.SiteLanguageProperties.GetMainLanguages(this, _publishedValueFallback);
 
 		///<summary>
 		/// Main Navigation: Add the links for the main navigation
