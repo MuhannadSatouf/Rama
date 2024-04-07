@@ -8,4 +8,48 @@
 @{
     var model = Model;
     var model2 = Model;
+    var galleryFolder = model.GalleryFolder;
+    var galleryItems = galleryFolder?.Children;
+    var galleryItems2 = galleryFolder?.Children;
+    var projectTitle = model.ProjectTitle;
+    var projectDescription = model.ProjectDescription;
 }
+
+<div class="grid-system grid-data-inside-max-width">
+    <div class="project-page grid-full-width">
+        @if (!string.IsNullOrEmpty(projectTitle))
+        {
+            <div class="project-page__title">@projectTitle</div>
+        }
+
+        @if (projectDescription != null)
+        {
+            <div class="project-page__description">@projectDescription</div>
+        }
+            <article class='gallery'>
+                @if (galleryItems != null && galleryItems.Any())
+                {
+                    foreach (var item in galleryItems)
+                    {
+                        <a class='gallery--item' href="@item.GetCropUrl()">
+                            <img src="@item.GetCropUrl()" alt="@item.Name"/>
+                        </a>
+                    }
+                }
+            </article>
+    </div>
+</div>
+
+<script>
+    window.addEventListener("load", function () {
+        baguetteBox.run(".gallery");
+    });
+
+    window.addEventListener("load", function () {
+        baguetteBox.run(".gallery", {
+            captions: true,
+            buttons: "true",
+            animation: "fadeIn",
+        });
+    })
+</script>
